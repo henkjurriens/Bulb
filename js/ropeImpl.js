@@ -6,18 +6,19 @@ ropeDemo.rope = {
 	coeff:+1,
 	state: false,
 	neon: null,
-	oldCoeff: null
+	oldCoeff: null,
+	color : 'ff0000'
 };
 
 ropeDemo.DrawOverride = function () {
 
-  
+
 
 
 	// Draw segments
 
 	ropeDemo.context.drawingContext.clearRect(0, 0, ropeDemo.context.size.w, ropeDemo.context.size.h);
-	
+
 	ropeDemo.context.drawingContext.beginPath();
 
 	for (var index in ropeDemo.rope.items) {
@@ -26,13 +27,13 @@ ropeDemo.DrawOverride = function () {
 
 		if (index == 0) {
 			ropeDemo.context.drawingContext.moveTo(item.x + ropeDemo.context.center.x, item.y + ropeDemo.context.center.y);
-			
+
 		} else if (item.isRope == true){
 				ropeDemo.context.drawingContext.lineTo(item.x + ropeDemo.context.center.x, item.y + ropeDemo.context.center.y);
-				
-			
-				
-			   
+
+
+
+
 		}else if (item.isRope == false){
 
 				var item0 = ropeDemo.rope.items[index-18];
@@ -50,23 +51,22 @@ ropeDemo.DrawOverride = function () {
 				// 	if(ropeDemo.rope.coeff<0){
 				// 		delta = 0.5;
 				// 	}
-				// 	ropeDemo.rope.coeff = ropeDemo.rope.oldCoeff + delta; 
+				// 	ropeDemo.rope.coeff = ropeDemo.rope.oldCoeff + delta;
 				// }
 				// ropeDemo.rope.oldCoeff = ropeDemo.rope.coeff;
 
-				console.log(ropeDemo.rope.coeff );
 				ropeDemo.context.drawingContext.save();
 				ropeDemo.context.drawingContext.translate((item.x + ropeDemo.context.center.x), (item.y + ropeDemo.context.center.y));
 				ropeDemo.context.drawingContext.rotate(ropeDemo.rope.coeff);
-				
+
 				//the light
-				
-			
-				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img0,-150,-10); 
-				
+
+
+				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img0,-150,-10);
+
 
 				ropeDemo.context.drawingContext.restore();
-				
+
 		}
 	}
 	var grad= ropeDemo.context.drawingContext.createLinearGradient((ropeDemo.context.size.w * 0.5)-10, 0, (ropeDemo.context.size.w * 0.5)+20,0);
@@ -90,7 +90,7 @@ ropeDemo.ThinkOverride = function () {
         ropeDemo.rope.items[19].x = ropeDemo.context.mouse.x - ropeDemo.context.center.x;
         ropeDemo.rope.items[19].y = ropeDemo.context.mouse.y - ropeDemo.context.center.y;
     }
-   
+
 	// Apply verlet integration
 	for (var index in ropeDemo.rope.items) {
 		var item = ropeDemo.rope.items[index];
@@ -165,8 +165,8 @@ ropeDemo.Light = function(){
 				$('.central').css({'opacity':'1'});
 				ropeDemo.data.state = true;
 				ropeDemo.context.drawingContext.beginPath();
-				 
-           		
+
+
 
 				var item = ropeDemo.rope.items.slice(-1)[0];
 				var item0 = ropeDemo.rope.items.slice(-9)[0];
@@ -174,16 +174,17 @@ ropeDemo.Light = function(){
 				ropeDemo.context.drawingContext.save();
 				ropeDemo.context.drawingContext.translate((item.x + ropeDemo.context.center.x), (item.y + ropeDemo.context.center.y));
 				ropeDemo.context.drawingContext.rotate(ropeDemo.rope.coeff);
-				
+
 				//the light
-				
+
 				ropeDemo.context.drawingContext.moveTo(item.x, item.y+170);
 				ropeDemo.context.drawingContext.lineTo(3900, 1280);
 				ropeDemo.context.drawingContext.lineTo(-3900,1280);
 				ropeDemo.context.drawingContext.lineTo(item.x, item.y+170);
 				var grd = ropeDemo.context.drawingContext.createRadialGradient(0, 0, 2, 640, 1030, 1280);
-				
-				grd.addColorStop(0, 'white');
+
+				grd.addColorStop(0, '#' + ropeDemo.rope.color);
+				console.log('bulb : ' + ropeDemo.rope.color);
 				  // dark blue
 				grd.addColorStop(1, 'rgba(255, 255, 255, 0.6)');
 
@@ -191,8 +192,8 @@ ropeDemo.Light = function(){
 				ropeDemo.context.drawingContext.fillStyle = grd;
 				ropeDemo.context.drawingContext.fill();
 
-				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img1,-150,-10); 
-				
+				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img1,-150,-10);
+
 
 				ropeDemo.context.drawingContext.restore();
 				ropeDemo.context.drawingContext.lineWidth = 0;
@@ -215,9 +216,9 @@ ropeDemo.noLight = function(){
 				ropeDemo.context.drawingContext.save();
 				ropeDemo.context.drawingContext.translate((item.x + ropeDemo.context.center.x), (item.y + ropeDemo.context.center.y));
 				ropeDemo.context.drawingContext.rotate(ropeDemo.rope.coeff);
-							
-				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img0,-150,-10); 
-				
+
+				ropeDemo.context.drawingContext.drawImage(ropeDemo.context.img0,-150,-10);
+
 
 				ropeDemo.context.drawingContext.restore();
 				ropeDemo.context.drawingContext.lineWidth = 0;

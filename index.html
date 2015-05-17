@@ -212,6 +212,8 @@
 	var central = $('.mainText');
 	var winW =  $(window).width();
 
+
+
 	$('.lights').click(function(){
 			if(	ropeDemo.data.state == true){
 								ropeDemo.turnOff();
@@ -223,17 +225,6 @@
 	});
 
 
-
-		$("body").mousemove(function(e) {
-			// if(	ropeDemo.data.state == true){
-			// 	var degree = -((e.pageX-(winW/2))*65)/(winW/2);
-
-			// 	titleShadow.css({'transform': 'skew('+(-degree)+'deg,0deg) scaleY(.2)'});
-			// 	titleShadow.css({'left':(winW/2)+(degree*1.2)});
-
-			// 	// central.css({'left':winW/2+(degree*0.2)});
-			// }
-		})
 	</script>
 	<audio preload="auto" controls id="neonSound" class="resources">
 		<source src="neon.mp3" type="audio/mpeg">
@@ -250,5 +241,16 @@
 	<img class = "resources" id = 'lampOff'src="lamp0.png" width='0' height='0'>
 	<img class = "resources" id = 'lampOn' src="lamp1.png" width='0' height='0'>
 
+<script>
+  var host = location.origin.replace(/^http/, 'ws')
+  var ws = new WebSocket(host);
+  ws.onmessage = function (event) {
+    var color = JSON.parse(event.data);
+    console.log('color : ' + color);
+    ropeDemo.rope.color = color;
+    ropeDemo.Light();
+
+  };
+</script>
 </body>
 </html>
