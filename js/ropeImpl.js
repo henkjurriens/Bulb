@@ -184,7 +184,14 @@ ropeDemo.Light = function(){
 				var grd = ropeDemo.context.drawingContext.createRadialGradient(0, 0, 2, 640, 1030, 1280);
 
 				console.log('bulb : ' + ropeDemo.rope.color);
-				grd.addColorStop(0, '#' + ropeDemo.rope.color);
+				try {
+					grd.addColorStop(0, '#' + ropeDemo.rope.color);
+				}
+				catch(err) {
+					grd.addColorStop(0, '#ffffff');
+					
+				}
+
 
 				  // dark blue
 				grd.addColorStop(1, 'rgba(255, 255, 255, 0.6)');
