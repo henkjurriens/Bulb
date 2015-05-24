@@ -7,7 +7,7 @@ ropeDemo.rope = {
 	state: false,
 	neon: null,
 	oldCoeff: null,
-	color : 'ff0000'
+	color : ''
 };
 
 ropeDemo.DrawOverride = function () {
@@ -183,8 +183,9 @@ ropeDemo.Light = function(){
 				ropeDemo.context.drawingContext.lineTo(item.x, item.y+170);
 				var grd = ropeDemo.context.drawingContext.createRadialGradient(0, 0, 2, 640, 1030, 1280);
 
-				grd.addColorStop(0, '#' + ropeDemo.rope.color);
 				console.log('bulb : ' + ropeDemo.rope.color);
+				grd.addColorStop(0, '#' + ropeDemo.rope.color);
+
 				  // dark blue
 				grd.addColorStop(1, 'rgba(255, 255, 255, 0.6)');
 
