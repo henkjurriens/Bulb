@@ -183,7 +183,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 </head>
 <body>
-  <div id="text" style="color : white">afdsa</div>
+  <div id="text" style="color : white"></div>
 	<div class = 'external wide'>Wide</div>
 	<div class = 'external lenotta'>Lenotta</div>
 	<div class = 'external hack'>Hack</div>
@@ -248,7 +248,7 @@
   ws.onmessage = function (event) {
     var color = JSON.parse(event.data);
     console.log('color : ' + color);
-    var c = document.getElementById("text");
+    //var c = document.getElementById("text");
   //  c.innerHTML = color;
 
 		if (color.indexOf("#") > -1) {
