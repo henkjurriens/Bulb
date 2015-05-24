@@ -251,12 +251,14 @@
     //var c = document.getElementById("text");
   //  c.innerHTML = color;
 
-		if (color.indexOf("#") > -1) {
+		try {
+			ropeDemo.rope.color = color;
+		}
+		catch(err) {
 			console.log('error');
 			ropeDemo.rope.color = 'ffffff';
-		} else {
-    	ropeDemo.rope.color = color;
 		}
+
     ropeDemo.Light();
 
   };

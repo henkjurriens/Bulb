@@ -21,7 +21,8 @@ angular.module('starter.services', []).filter("hex", function() {
 
       var rgb = localStorage.getItem("red") + localStorage.getItem("green") + localStorage.getItem("blue");
 
-      var host = "ws://localhost:5000";
+      //var host = "ws://localhost:5000";
+      var host = "ws://demobulb.herokuapp.com";
       var ws = new WebSocket(host);
 
       ws.onopen = function () {
